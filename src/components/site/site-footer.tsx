@@ -71,7 +71,7 @@ export function SiteFooter() {
                 <p className="eyebrow text-ivory/70 mb-5">{heading}</p>
                 <ul className="space-y-3">
                   {items.map((item) => (
-                    <li key={item.href}>
+                    <li key={item.label}>
                       <Link
                         href={item.href}
                         className="text-sm text-ivory/85 hover:text-brass transition-colors"
