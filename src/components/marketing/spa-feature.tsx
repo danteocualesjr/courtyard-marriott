@@ -54,7 +54,7 @@ export function SpaFeature() {
               Discover the Spa
             </Link>
             <Link
-              href="/offers/spa-sanctuary"
+              href="/offers#spa-sanctuary"
               className="text-[11px] uppercase tracking-[0.25em] text-ivory/85 link-underline"
             >
               The Spa Sanctuary Package

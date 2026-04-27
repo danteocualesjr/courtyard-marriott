@@ -162,7 +162,7 @@ export default function SpaPage() {
               </Link>
             </Button>
             <Button asChild variant="ghost" size="lg">
-              <Link href="/offers/spa-sanctuary">View Spa Package</Link>
+              <Link href="/offers#spa-sanctuary">View Spa Package</Link>
             </Button>
           </div>
         </div>
