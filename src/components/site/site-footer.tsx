@@ -119,9 +119,9 @@ export function SiteFooter() {
           <div className="text-xs text-ivory/50 md:text-right space-y-1">
             <p>© {new Date().getFullYear()} The Courtyard. All rights reserved.</p>
             <p className="space-x-4">
-              <Link href="#" className="hover:text-ivory">Privacy</Link>
-              <Link href="#" className="hover:text-ivory">Terms</Link>
-              <Link href="#" className="hover:text-ivory">Accessibility</Link>
+              <Link href="/privacy" className="hover:text-ivory">Privacy</Link>
+              <Link href="/terms" className="hover:text-ivory">Terms</Link>
+              <Link href="/accessibility" className="hover:text-ivory">Accessibility</Link>
             </p>
           </div>
         </div>
