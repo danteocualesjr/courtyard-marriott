@@ -105,7 +105,7 @@ export default async function RoomDetailPage({
 
               <div className="mt-8 space-y-3">
                 <Button asChild size="lg" className="w-full">
-                  <Link href="/reserve">
+                  <Link href={`/reserve?room=${room.slug}`}>
                     Reserve Now
                     <ArrowRight className="h-4 w-4" />
                   </Link>

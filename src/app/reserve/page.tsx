@@ -45,6 +45,10 @@ function selectParam(
     : fallback;
 }
 
+function roomParam(value: string | null) {
+  return rooms.some((room) => room.slug === value) ? value : null;
+}
+
 export default function ReservePage() {
   return (
     <React.Suspense
@@ -77,7 +81,9 @@ function ReserveExperience() {
   const [roomsCount, setRoomsCount] = React.useState(() =>
     selectParam(searchParams.get("rooms"), "1", { min: 1, max: 4 })
   );
-  const [selectedRoom, setSelectedRoom] = React.useState<string | null>(null);
+  const [selectedRoom, setSelectedRoom] = React.useState<string | null>(() =>
+    roomParam(searchParams.get("room"))
+  );
   const [details, setDetails] = React.useState({
     firstName: "",
     lastName: "",
