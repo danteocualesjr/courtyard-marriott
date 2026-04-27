@@ -3,7 +3,8 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { addDays, format, differenceInCalendarDays } from "date-fns";
+import { useSearchParams } from "next/navigation";
+import { addDays, format, differenceInCalendarDays, isValid, parseISO } from "date-fns";
 import type { DateRange } from "react-day-picker";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, ChevronLeft } from "lucide-react";
@@ -27,15 +28,55 @@ type Step = 0 | 1 | 2 | 3;
 
 const stepLabels = ["Dates", "Room", "Details", "Review"];
 
+function parseDateParam(value: string | null) {
+  if (!value) return undefined;
+  const date = parseISO(value);
+  return isValid(date) ? date : undefined;
+}
+
+function selectParam(
+  value: string | null,
+  fallback: string,
+  { min, max }: { min: number; max: number }
+) {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed >= min && parsed <= max
+    ? String(parsed)
+    : fallback;
+}
+
 export default function ReservePage() {
+  return (
+    <React.Suspense
+      fallback={
+        <section className="bg-ivory">
+          <div className="container-luxe pt-32 pb-24">
+            <p className="eyebrow text-stone-500">Preparing reservation</p>
+          </div>
+        </section>
+      }
+    >
+      <ReserveExperience />
+    </React.Suspense>
+  );
+}
+
+function ReserveExperience() {
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const initialFrom = parseDateParam(searchParams.get("from"));
+  const initialTo = parseDateParam(searchParams.get("to"));
   const [step, setStep] = React.useState<Step>(0);
-  const [range, setRange] = React.useState<DateRange | undefined>({
-    from: addDays(new Date(), 14),
-    to: addDays(new Date(), 17),
-  });
-  const [adults, setAdults] = React.useState("2");
-  const [roomsCount, setRoomsCount] = React.useState("1");
+  const [range, setRange] = React.useState<DateRange | undefined>(() => ({
+    from: initialFrom ?? addDays(new Date(), 14),
+    to: initialTo ?? addDays(new Date(), 17),
+  }));
+  const [adults, setAdults] = React.useState(() =>
+    selectParam(searchParams.get("adults"), "2", { min: 1, max: 6 })
+  );
+  const [roomsCount, setRoomsCount] = React.useState(() =>
+    selectParam(searchParams.get("rooms"), "1", { min: 1, max: 4 })
+  );
   const [selectedRoom, setSelectedRoom] = React.useState<string | null>(null);
   const [details, setDetails] = React.useState({
     firstName: "",

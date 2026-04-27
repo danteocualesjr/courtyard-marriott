@@ -36,7 +36,15 @@ export function BookingBar({ variant = "floating", className }: BookingBarProps)
   const [rooms, setRooms] = React.useState("1");
 
   const onReserve = () => {
-    router.push("/reserve");
+    const params = new URLSearchParams({
+      adults,
+      rooms,
+    });
+
+    if (range?.from) params.set("from", format(range.from, "yyyy-MM-dd"));
+    if (range?.to) params.set("to", format(range.to, "yyyy-MM-dd"));
+
+    router.push(`/reserve?${params.toString()}`);
   };
 
   const surface =
