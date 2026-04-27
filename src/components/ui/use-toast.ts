@@ -30,6 +30,12 @@ function genId() {
 
 type ToastInput = Omit<ToasterToast, "id">;
 
+function dismiss(id: string) {
+  dispatch({
+    toasts: memoryState.toasts.filter((t) => t.id !== id),
+  });
+}
+
 function toast(props: ToastInput) {
   const id = genId();
   const newToast: ToasterToast = { ...props, id, open: true };
@@ -37,9 +43,7 @@ function toast(props: ToastInput) {
     toasts: [newToast, ...memoryState.toasts].slice(0, TOAST_LIMIT),
   });
   setTimeout(() => {
-    dispatch({
-      toasts: memoryState.toasts.filter((t) => t.id !== id),
-    });
+    dismiss(id);
   }, TOAST_REMOVE_DELAY);
   return { id };
 }
@@ -53,7 +57,7 @@ function useToast() {
       if (index > -1) listeners.splice(index, 1);
     };
   }, []);
-  return { ...state, toast };
+  return { ...state, toast, dismiss };
 }
 
 export { useToast, toast };
