@@ -80,7 +80,7 @@ export default function OffersPage() {
                       <p className="text-xs text-stone-500">{offer.duration}</p>
                     </div>
                     <Button asChild>
-                      <Link href="/reserve">
+                      <Link href={`/reserve?offer=${offer.slug}`}>
                         Reserve
                         <ArrowRight className="h-4 w-4" />
                       </Link>

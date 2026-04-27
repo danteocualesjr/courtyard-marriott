@@ -9,6 +9,7 @@ import type { DateRange } from "react-day-picker";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, ChevronLeft } from "lucide-react";
 import { rooms } from "@/lib/data/rooms";
+import { offers } from "@/lib/data/offers";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -49,6 +50,10 @@ function roomParam(value: string | null) {
   return rooms.some((room) => room.slug === value) ? value : null;
 }
 
+function offerParam(value: string | null) {
+  return offers.find((offer) => offer.slug === value);
+}
+
 export default function ReservePage() {
   return (
     <React.Suspense
@@ -84,6 +89,7 @@ function ReserveExperience() {
   const [selectedRoom, setSelectedRoom] = React.useState<string | null>(() =>
     roomParam(searchParams.get("room"))
   );
+  const selectedOffer = offerParam(searchParams.get("offer"));
   const [details, setDetails] = React.useState({
     firstName: "",
     lastName: "",
@@ -113,7 +119,9 @@ function ReserveExperience() {
   const onConfirm = () => {
     toast({
       title: "Reservation received (demo)",
-      description: `${room?.name} · ${nights} night${nights === 1 ? "" : "s"} · ${formatCurrency(total)}`,
+      description: `${selectedOffer ? `${selectedOffer.title} · ` : ""}${room?.name} · ${nights} night${
+        nights === 1 ? "" : "s"
+      } · ${formatCurrency(total)}`,
     });
   };
 
@@ -138,6 +146,18 @@ function ReserveExperience() {
           <p className="lede text-stone-700 mt-5 max-w-xl">
             A few quiet steps. You may review and revise at every stage.
           </p>
+          {selectedOffer && (
+            <div className="mt-8 max-w-xl border border-brass/30 bg-sand/40 p-5">
+              <p className="eyebrow text-stone-600">Selected offer</p>
+              <p className="mt-2 font-serif text-2xl text-charcoal">
+                {selectedOffer.title}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                We will attach this package request for the concierge to confirm
+                with your stay.
+              </p>
+            </div>
+          )}
         </div>
 
         <Stepper step={step} />
@@ -179,6 +199,7 @@ function ReserveExperience() {
                     rooms={roomsCount}
                     nights={nights}
                     room={room}
+                    offer={selectedOffer}
                     details={details}
                     subtotal={subtotal}
                     taxes={taxes}
@@ -225,6 +246,7 @@ function ReserveExperience() {
               adults={adults}
               rooms={roomsCount}
               room={room}
+              offer={selectedOffer}
               subtotal={subtotal}
               taxes={taxes}
               total={total}
@@ -532,6 +554,7 @@ function StepReview({
   rooms: roomsCount,
   nights,
   room,
+  offer,
   details,
   subtotal,
   taxes,
@@ -543,6 +566,7 @@ function StepReview({
   rooms: string;
   nights: number;
   room?: (typeof rooms)[number];
+  offer?: (typeof offers)[number];
   details: { firstName: string; lastName: string; email: string; phone: string; notes: string };
   subtotal: number;
   taxes: number;
@@ -586,6 +610,15 @@ function StepReview({
             <p className="text-stone-500">No room selected.</p>
           )}
         </ReviewBlock>
+
+        {offer && (
+          <ReviewBlock title="Offer" onEdit={() => onEdit(0)}>
+            <p className="font-serif text-xl text-charcoal">{offer.title}</p>
+            <p className="text-sm text-stone-700">
+              {offer.duration} · from {formatCurrency(offer.startingFrom)}
+            </p>
+          </ReviewBlock>
+        )}
 
         <ReviewBlock title="Guest" onEdit={() => onEdit(2)}>
           <p className="font-serif text-xl text-charcoal">
@@ -661,6 +694,7 @@ function Summary({
   adults,
   rooms: roomsCount,
   room,
+  offer,
   subtotal,
   taxes,
   total,
@@ -670,6 +704,7 @@ function Summary({
   adults: string;
   rooms: string;
   room?: (typeof rooms)[number];
+  offer?: (typeof offers)[number];
   subtotal: number;
   taxes: number;
   total: number;
@@ -688,6 +723,7 @@ function Summary({
           }`}
         />
         <Line label="Room" value={room?.name ?? "Not selected"} />
+        {offer && <Line label="Offer" value={offer.title} />}
       </div>
       <div className="mt-6 pt-6 border-t border-stone-300/50 space-y-2 text-sm">
         <Line label="Subtotal" value={formatCurrency(subtotal)} />
