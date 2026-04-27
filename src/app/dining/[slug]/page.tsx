@@ -63,7 +63,7 @@ export default async function VenuePage({
       <section className="container-luxe py-24 lg:py-32">
         <div className="grid gap-16 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow text-stone-600 mb-6">The Room</p>
+            <p className="eyebrow text-stone-600 mb-6">The Venue</p>
             <p className="font-serif font-light text-[clamp(1.5rem,2.4vw,2.25rem)] leading-snug text-charcoal text-balance">
               {venue.longDescription}
             </p>
