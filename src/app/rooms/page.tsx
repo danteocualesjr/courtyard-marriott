@@ -49,7 +49,7 @@ export default function RoomsPage() {
             </button>
           ))}
           <span className="ml-auto text-xs text-stone-500">
-            {filtered.length} {filtered.length === 1 ? "category" : "categories"}
+            {filtered.length} {filtered.length === 1 ? "stay" : "stays"}
           </span>
         </Reveal>
 
