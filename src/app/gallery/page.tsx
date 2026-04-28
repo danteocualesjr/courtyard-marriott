@@ -105,6 +105,9 @@ export default function GalleryPage() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-1400 ease-luxe group-hover:scale-[1.04]"
                   />
+                  <span className="absolute bottom-4 left-4 bg-ivory/90 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-charcoal opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                    {g.category}
+                  </span>
                 </div>
               </button>
             </Reveal>
@@ -146,8 +149,13 @@ export default function GalleryPage() {
               className="object-contain animate-fade-up"
               priority
             />
-            <figcaption className="absolute bottom-[-3rem] left-0 right-0 text-center text-xs text-ivory/70">
-              {filtered[active].alt} · {active + 1} / {filtered.length}
+            <figcaption className="absolute bottom-[-3.75rem] left-0 right-0 text-center text-xs text-ivory/70">
+              <span className="block text-[10px] uppercase tracking-[0.25em] text-brass">
+                {filtered[active].category}
+              </span>
+              <span>
+                {filtered[active].alt} · {active + 1} / {filtered.length}
+              </span>
             </figcaption>
           </figure>
         </div>
