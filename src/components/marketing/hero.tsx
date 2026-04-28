@@ -64,6 +64,23 @@ export function Hero() {
             quiet hospitality.
           </p>
 
+          <dl className="mt-10 grid max-w-2xl grid-cols-3 border-y border-ivory/20 py-5 text-ivory">
+            {[
+              ["56", "Rooms"],
+              ["6", "Suites"],
+              ["1924", "Established"],
+            ].map(([value, label]) => (
+              <div key={label} className="border-r border-ivory/15 px-4 first:pl-0 last:border-r-0">
+                <dt className="text-[10px] uppercase tracking-[0.25em] text-ivory/55">
+                  {label}
+                </dt>
+                <dd className="mt-2 font-serif text-3xl leading-none text-brass-300 md:text-4xl">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
           <div className="mt-10 flex flex-wrap items-center gap-5">
             <Link href="/rooms" className="btn-luxe-ghost">
               Explore Rooms
