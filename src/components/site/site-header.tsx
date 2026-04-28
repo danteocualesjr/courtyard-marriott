@@ -48,6 +48,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "text-[11px] uppercase tracking-[0.25em] font-medium transition-colors hover:opacity-100",
                   transparent ? "text-ivory/85" : "text-charcoal/80",
