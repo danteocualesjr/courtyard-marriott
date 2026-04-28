@@ -43,6 +43,9 @@ export function DiningStrip() {
                   <h3 className="font-serif text-3xl md:text-4xl mt-3 leading-tight">
                     {venue.name}
                   </h3>
+                  <p className="mt-4 inline-flex bg-ivory/15 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ivory/80 backdrop-blur">
+                    {venue.hours[0].time}
+                  </p>
                 </div>
                 <div className="absolute top-5 right-5 h-10 w-10 bg-ivory/90 text-charcoal flex items-center justify-center transition-all group-hover:bg-brass group-hover:text-ivory">
                   <ArrowUpRight className="h-4 w-4" />
