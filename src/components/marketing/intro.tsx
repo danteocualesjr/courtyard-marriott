@@ -48,6 +48,12 @@ export function Intro() {
                 sizes="(min-width: 1024px) 36vw, 60vw"
                 className="object-cover"
               />
+              <div className="absolute inset-x-4 bottom-4 bg-ivory/90 px-4 py-3 text-charcoal backdrop-blur">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-stone-500">
+                  Lobby
+                </p>
+                <p className="mt-1 font-serif text-xl">Marble, brass, and morning light</p>
+              </div>
             </div>
             <div className="col-span-5 col-start-8 mt-16 aspect-[3/4] relative overflow-hidden">
               <Image
@@ -57,6 +63,12 @@ export function Intro() {
                 sizes="(min-width: 1024px) 26vw, 40vw"
                 className="object-cover"
               />
+              <div className="absolute inset-x-3 bottom-3 bg-charcoal/75 px-3 py-2 text-ivory backdrop-blur">
+                <p className="text-[9px] uppercase tracking-[0.25em] text-ivory/60">
+                  Courtyard
+                </p>
+                <p className="mt-1 font-serif text-base leading-tight">The quiet center</p>
+              </div>
             </div>
           </div>
         </Reveal>
