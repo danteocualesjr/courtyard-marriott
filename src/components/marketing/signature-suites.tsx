@@ -45,13 +45,17 @@ export function SignatureSuites() {
       </div>
 
       <div className="container-luxe">
-        <div className="overflow-x-auto -mx-6 md:-mx-10 lg:-mx-16 px-6 md:px-10 lg:px-16 pb-4 [scrollbar-width:thin]">
+        <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-stone-500">
+          <span className="h-px w-10 bg-brass" />
+          Drag to explore
+        </div>
+        <div className="overflow-x-auto -mx-6 scroll-px-6 snap-x snap-mandatory md:-mx-10 md:scroll-px-10 lg:-mx-16 lg:scroll-px-16 px-6 md:px-10 lg:px-16 pb-5 [scrollbar-width:thin]">
           <div className="flex gap-8 md:gap-10 min-w-max">
             {featured.map((room, i) => (
               <Reveal
                 key={room.slug}
                 delay={i * 0.1}
-                className="w-[78vw] md:w-[420px] lg:w-[460px] shrink-0"
+                className="w-[78vw] shrink-0 snap-start md:w-[420px] lg:w-[460px]"
               >
                 <Link
                   href={`/rooms/${room.slug}`}
