@@ -736,6 +736,22 @@ function Summary({
         </span>
       </div>
 
+      <div className="mt-8 border border-stone-300/70 bg-ivory/60 p-5">
+        <p className="eyebrow text-stone-600">Need assistance?</p>
+        <p className="mt-3 text-xs leading-relaxed text-stone-700">
+          Our reservations team can arrange adjoining rooms, airport transfers,
+          or special occasions before you arrive.
+        </p>
+        <div className="mt-4 space-y-2 text-xs text-stone-700">
+          <a href="tel:+15555550100" className="block link-underline">
+            +1 555 555 0100
+          </a>
+          <a href="mailto:stay@thecourtyard.com" className="block link-underline">
+            stay@thecourtyard.com
+          </a>
+        </div>
+      </div>
+
       <p className="mt-8 text-xs text-stone-600 leading-relaxed">
         Free cancellation until 48 hours prior to arrival. Concierge available
         24 hours at <a href="tel:+15555550100" className="link-underline">+1 555 555 0100</a>.
