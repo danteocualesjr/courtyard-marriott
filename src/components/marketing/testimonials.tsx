@@ -70,15 +70,17 @@ export function Testimonials() {
             <button
               onClick={prev}
               aria-label="Previous quote"
-              className="h-10 w-10 border border-stone-300 flex items-center justify-center hover:bg-charcoal hover:text-ivory hover:border-charcoal transition-colors focus-luxe"
+              className="inline-flex h-10 items-center gap-2 border border-stone-300 px-4 text-[10px] uppercase tracking-[0.2em] hover:bg-charcoal hover:text-ivory hover:border-charcoal transition-colors focus-luxe"
             >
               <ChevronLeft className="h-4 w-4" />
+              Previous
             </button>
             <div className="flex items-center gap-2">
               {quotes.map((_, i) => (
                 <button
                   key={i}
                   aria-label={`Go to quote ${i + 1}`}
+                  aria-current={i === index ? "true" : undefined}
                   onClick={() => setIndex(i)}
                   className={`h-1.5 transition-all ${
                     i === index ? "w-10 bg-brass" : "w-2 bg-stone-300"
@@ -89,8 +91,9 @@ export function Testimonials() {
             <button
               onClick={next}
               aria-label="Next quote"
-              className="h-10 w-10 border border-stone-300 flex items-center justify-center hover:bg-charcoal hover:text-ivory hover:border-charcoal transition-colors focus-luxe"
+              className="inline-flex h-10 items-center gap-2 border border-stone-300 px-4 text-[10px] uppercase tracking-[0.2em] hover:bg-charcoal hover:text-ivory hover:border-charcoal transition-colors focus-luxe"
             >
+              Next
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
