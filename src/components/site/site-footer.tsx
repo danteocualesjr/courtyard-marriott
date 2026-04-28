@@ -94,22 +94,28 @@ export function SiteFooter() {
 
           <div className="flex md:justify-center gap-5">
             <a
-              href="#"
+              href="https://www.instagram.com/thecourtyardhotel"
               aria-label="Instagram"
+              target="_blank"
+              rel="noreferrer"
               className="text-ivory/70 hover:text-brass transition-colors"
             >
               <Instagram className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/thecourtyardhotel"
               aria-label="Facebook"
+              target="_blank"
+              rel="noreferrer"
               className="text-ivory/70 hover:text-brass transition-colors"
             >
               <Facebook className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://www.youtube.com/@thecourtyardhotel"
               aria-label="YouTube"
+              target="_blank"
+              rel="noreferrer"
               className="text-ivory/70 hover:text-brass transition-colors"
             >
               <Youtube className="h-5 w-5" />
