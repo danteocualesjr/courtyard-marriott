@@ -54,6 +54,25 @@ export const metadata: Metadata = {
   },
 };
 
+const hotelJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  name: "The Courtyard",
+  url: "https://thecourtyard.example.com",
+  telephone: "+1 555 555 0100",
+  email: "stay@thecourtyard.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "14 Garden Lane",
+    addressLocality: "The Old Quarter",
+  },
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Spa", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Fine dining", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Private events", value: true },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,6 +87,10 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(hotelJsonLd) }}
+        />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
